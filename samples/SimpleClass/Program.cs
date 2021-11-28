@@ -6,7 +6,7 @@ var services = new ServiceCollection();
 
 services.AddHttpClient<ExternalClient>();
 
-services.AddHttpClientTestDouble<ExternalClient>()
+services.AddHttpClientFake<ExternalClient>()
     .WithFallback(() => new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent("Content") });
 
 var serviceProvider = services.BuildServiceProvider();
@@ -15,7 +15,7 @@ var externalClient = serviceProvider.GetRequiredService<ExternalClient>();
 
 var response = await externalClient.Get();
 
-Console.WriteLine(response);
+Console.WriteLine(response); // Output: Content
 
 internal class ExternalClient
 {

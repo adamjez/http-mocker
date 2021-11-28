@@ -3,13 +3,14 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace HttpClientTestDouble;
 
-internal class HttpClientTestDoubleBuilder : IHttpClientTestDoubleBuilder
+internal class HttpClientFakeBuilder : IHttpClientFakeBuilder
 {
-    public HttpClientTestDoubleBuilder(IServiceCollection services)
+    public HttpClientFakeBuilder(IServiceCollection services, string name)
     {
         Services = services;
+        Name = name;
     }
 
-    public List<IHttpClientAction> Actions { get; } = new();
+    public string Name { get; }
     public IServiceCollection Services { get; }
 }

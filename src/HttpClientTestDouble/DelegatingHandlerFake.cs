@@ -2,11 +2,11 @@
 
 namespace HttpClientTestDouble;
 
-internal class DelegatingHandlerTestDouble : DelegatingHandler
+internal class DelegatingHandlerFake : DelegatingHandler
 {
     private readonly IEnumerable<IHttpClientAction> _actions;
 
-    public DelegatingHandlerTestDouble(IEnumerable<IHttpClientAction> actions)
+    public DelegatingHandlerFake(IEnumerable<IHttpClientAction> actions)
     {
         _actions = actions;
     }
