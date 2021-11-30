@@ -1,6 +1,6 @@
-﻿using HttpClientTestDouble.Actions;
+﻿using HttpMocker.Actions;
 
-namespace HttpClientTestDouble;
+namespace HttpMocker;
 
 public class HttpClientFakeDelegateOptions
 {

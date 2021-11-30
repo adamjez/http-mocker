@@ -1,4 +1,4 @@
-﻿namespace HttpClientTestDouble.Actions;
+﻿namespace HttpMocker.Actions;
 
 public interface IHttpClientAction
 {

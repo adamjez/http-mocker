@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace HttpClientTestDouble.TypeNameHelper;
+namespace HttpMocker.TypeNameHelper;
 
 // Adapted from https://github.com/dotnet/aspnetcore/blob/a450cb69b5e4549f5515cdb057a68771f56cefd7/src/Shared/TypeNameHelper/TypeNameHelper.cs
 internal static class TypeNameHelper

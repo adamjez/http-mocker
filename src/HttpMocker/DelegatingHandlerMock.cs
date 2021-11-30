@@ -1,12 +1,12 @@
-﻿using HttpClientTestDouble.Actions;
+﻿using HttpMocker.Actions;
 
-namespace HttpClientTestDouble;
+namespace HttpMocker;
 
-internal class DelegatingHandlerFake : DelegatingHandler
+internal class DelegatingHandlerMock : DelegatingHandler
 {
     private readonly IEnumerable<IHttpClientAction> _actions;
 
-    public DelegatingHandlerFake(IEnumerable<IHttpClientAction> actions)
+    public DelegatingHandlerMock(IEnumerable<IHttpClientAction> actions)
     {
         _actions = actions;
     }

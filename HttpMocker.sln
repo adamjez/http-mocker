@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClientTestDouble", "src\HttpClientTestDouble\HttpClientTestDouble.csproj", "{3E58D226-DBDA-48B1-91A2-D82216F06C55}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpMocker", "src\HttpMocker\HttpMocker.csproj", "{3E58D226-DBDA-48B1-91A2-D82216F06C55}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{B8C5C291-4769-4DE1-8E11-3055D61F8424}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleClass", "samples\SimpleClass\SimpleClass.csproj", "{AF1AF2D5-DAF6-49C8-8FEC-5AED31197EEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClients", "samples\HttpClients\HttpClients.csproj", "{AF1AF2D5-DAF6-49C8-8FEC-5AED31197EEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

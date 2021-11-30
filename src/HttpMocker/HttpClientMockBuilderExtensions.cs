@@ -1,13 +1,13 @@
-﻿using HttpClientTestDouble.Actions;
+﻿using HttpMocker.Actions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Http;
 using Microsoft.Extensions.Options;
 
-namespace HttpClientTestDouble;
+namespace HttpMocker;
 
-public static class HttpClientFakeBuilderExtensions
+public static class HttpClientMockBuilderExtensions
 {
-    public static IHttpClientFakeBuilder WithAction<TAction>(this IHttpClientFakeBuilder builder)
+    public static IHttpClientMockBuilder WithAction<TAction>(this IHttpClientMockBuilder builder)
         where TAction : class, IHttpClientAction
     {
         if (builder == null)
@@ -23,7 +23,7 @@ public static class HttpClientFakeBuilderExtensions
         return builder;
     }
     
-    public static IHttpClientFakeBuilder WithFallback(this IHttpClientFakeBuilder builder, Func<HttpResponseMessage> responseMessageFactory)
+    public static IHttpClientMockBuilder WithFallback(this IHttpClientMockBuilder builder, Func<HttpResponseMessage> responseMessageFactory)
     {
         if (builder == null)
         {
@@ -38,7 +38,7 @@ public static class HttpClientFakeBuilderExtensions
         return builder;
     }
     
-    internal static void AddDelegatingHandlerFake(this IHttpClientFakeBuilder builder)
+    internal static void AddDelegatingHandlerFake(this IHttpClientMockBuilder builder)
     {
         builder.Services.PostConfigure<HttpClientFactoryOptions>(builder.Name, options =>
         {
@@ -46,7 +46,7 @@ public static class HttpClientFakeBuilderExtensions
         });
     }
     
-    internal static void AddGlobalDelegatingHandlerFake(this IHttpClientFakeBuilder builder)
+    internal static void AddGlobalDelegatingHandlerFake(this IHttpClientMockBuilder builder)
     {
         builder.Services.PostConfigureAll<HttpClientFactoryOptions>(options =>
         {
@@ -54,7 +54,7 @@ public static class HttpClientFakeBuilderExtensions
         });
     }
 
-    private static void AddDelegatingHandlerFake(IHttpClientFakeBuilder builder, HttpClientFactoryOptions factoryOptions)
+    private static void AddDelegatingHandlerFake(IHttpClientMockBuilder builder, HttpClientFactoryOptions factoryOptions)
     {
         factoryOptions.HttpMessageHandlerBuilderActions.Add(handlerBuilder =>
         {
@@ -64,7 +64,7 @@ public static class HttpClientFakeBuilderExtensions
             
             var actions = delegateOptions.HttpClientActionFactories.Select(factory => factory(handlerBuilder.Services));
 
-            var delegatingHandler = new DelegatingHandlerFake(actions);
+            var delegatingHandler = new DelegatingHandlerMock(actions);
             handlerBuilder.AdditionalHandlers.Add(delegatingHandler);
         });
     }

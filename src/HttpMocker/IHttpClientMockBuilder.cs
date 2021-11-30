@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace HttpClientTestDouble;
+namespace HttpMocker;
 
-public interface IHttpClientFakeBuilder
+public interface IHttpClientMockBuilder
 {
     string Name { get; }
     IServiceCollection Services { get; }
