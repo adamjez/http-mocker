@@ -1,0 +1,25 @@
+name: Release
+
+on:
+  push:
+    tags:
+    - '*.*.*'
+    branches-ignore:
+    - '*'
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.100
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: pack the nuget
+      run: dotnet pack --configuration Release /p:Version=${GITHUB_REF:10} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg /p:ContinuousIntegrationBuild=true
+    - name: release package
+      run: dotnet nuget push **/*.nupkg --api-key ${{secrets.nuget}} --source https://api.nuget.org/v3/index.json

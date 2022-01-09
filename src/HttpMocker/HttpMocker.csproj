@@ -5,6 +5,24 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+        <PackageId>HttpMocker</PackageId>
+        <Authors>Adam Jež</Authors>
+        <Product>HttpMocker</Product>
+        <Description>HttpMocker is a testing layer for HttpClient library</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/adamjez/http-mocker</PackageProjectUrl>
+        <PackageTags>httpclient, servicecollection, testing</PackageTags>
+        <RepositoryUrl>https://github.com/adamjez/http-mocker</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+
+        <IsPackable>true</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
