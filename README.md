@@ -4,21 +4,21 @@ HttpMocker is a testing layer for HttpClient library. The library is best suited
 
 ## Getting started
 
-Install library nuget package
+Install nuget package
 ```
 dotnet add package HttpMocker
 ```
 
 ### Typed client
-Mock response for all http requests type class as client of `HttpClient`.
+Mock response for http request type class as client of `HttpClient`.
 
-Somewhere in your `Startup` method `HttpClient` is registered
+The `HttpClient` is often configured with the extension method `AddHttpClient`. 
 
 ```csharp
 services.AddHttpClient<YourExternalClientClass>();
 ```
 
-Later in your integration tests override `HttpClient` behaviour inside `YourExternalClientClass`
+In your tests override `HttpClient` behavior inside `YourExternalClientClass`.
 ```csharp
 services.AddHttpClientMock<YourExternalClientClass>()
     .WithFallback(
@@ -26,15 +26,15 @@ services.AddHttpClientMock<YourExternalClientClass>()
 ```
 
 ### Named client
-Mock response for all http requests using named client.
+Mock response for http request using named client.
 
-Somewhere in your `Startup` method `HttpClient` is registered
+The `HttpClient` is often configured with the extension method `AddHttpClient`.
 
 ```csharp
 services.AddHttpClient<YourExternalClientClass>("client-name");
 ```
 
-Later in your integration tests override `HttpClient` behaviour inside `YourExternalClientClass` using overload which accepts client name
+In your tests override `HttpClient` behavior inside `YourExternalClientClass` using overload which accepts client name.
 ```csharp
 services.AddHttpClientMock("client-name")
     .WithFallback(
@@ -42,5 +42,18 @@ services.AddHttpClientMock("client-name")
 ```
 
 
-### All clients
-TODO
+### Global handler
+Mock all registered http clients in `IServiceCollection`.
+
+Multiple `HttpClient` services are registered in `IServiceCollection` using typed and/or named methods.
+
+```csharp
+services.AddHttpClient<YourExternalClientClass>();
+services.AddHttpClient<YourExternalClientClass>("client-name");
+```
+
+In your tests override all `HttpClient` registered inside `IServiceCollection` using `AddGlobalHttpClientMock` extension method.
+```csharp
+services.AddGlobalHttpClientMock()
+    .WithFallback(() => new HttpResponseMessage(HttpStatusCode.NotFound));
+```
