@@ -57,3 +57,13 @@ In your tests override all `HttpClient` registered inside `IServiceCollection` u
 services.AddGlobalHttpClientMock()
     .WithFallback(() => new HttpResponseMessage(HttpStatusCode.NotFound));
 ```
+
+## HttpClient Middleware
+
+The middleware is mechanisms to control respond to incoming `HttpRequestMessage`. 
+
+The Http Mocker library contains multiple built-in middlewares that can be registered using extension methods:
+* `WithFallback`
+* `WithCapturing`
+
+Custom middleware can be registered with extension method `WithMiddleware<TMiddleware>`. The `TMiddleware` type has to be registered in `IServiceCollection`.

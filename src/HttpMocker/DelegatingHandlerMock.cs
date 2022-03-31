@@ -1,26 +1,40 @@
-﻿using HttpMocker.Actions;
+﻿using HttpMocker.Middlewares;
+using System.Collections.Immutable;
 
 namespace HttpMocker;
 
 internal class DelegatingHandlerMock : DelegatingHandler
 {
-    private readonly IEnumerable<IHttpClientAction> _actions;
+    private readonly ImmutableArray<IHttpClientMiddleware> _middlewares;
 
-    public DelegatingHandlerMock(IEnumerable<IHttpClientAction> actions)
+    public DelegatingHandlerMock(IEnumerable<IHttpClientMiddleware> middlewares)
     {
-        _actions = actions;
+        _middlewares = middlewares.ToImmutableArray();
     }
 
     protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        foreach (var action in _actions)
+        Task<HttpResponseMessage> Process(HttpRequestMessage innerRequest, ImmutableArray<IHttpClientMiddleware> middlewares)
         {
-            if (action.CanHandle(request))
+            var (head, tail) = Deconstruct(middlewares);
+
+            if (head is null)
             {
-                return action.GenerateResponse(request);
+                throw new InvalidOperationException($"No action handled request to {request.Method} {request.RequestUri}");
+            }
+            else
+            {
+                return head.Handle(innerRequest, r => Process(r, tail));
             }
         }
 
-        throw new InvalidOperationException($"No action handled request to {request.Method} {request.RequestUri}");
+        return Process(request, _middlewares);
+    }
+
+    private static (T? head, ImmutableArray<T> tail) Deconstruct<T>(ImmutableArray<T> array)
+    {
+        var head = array.FirstOrDefault();
+        var tail = head is null ? array : array.Remove(head);
+        return (head, tail);
     }
 }

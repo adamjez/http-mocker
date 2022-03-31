@@ -1,8 +1,8 @@
-﻿using HttpMocker.Actions;
+﻿using HttpMocker.Middlewares;
 
 namespace HttpMocker;
 
-public class HttpClientFakeDelegateOptions
+internal class HttpClientFakeDelegateOptions
 {
-    public IList<Func<IServiceProvider, IHttpClientAction>> HttpClientActionFactories { get; } = new List<Func<IServiceProvider, IHttpClientAction>>();
+    public IList<Func<IServiceProvider, IHttpClientMiddleware>> HttpClientActionFactories { get; } = new List<Func<IServiceProvider, IHttpClientMiddleware>>();
 }

@@ -1,10 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpMocker", "src\HttpMocker\HttpMocker.csproj", "{3E58D226-DBDA-48B1-91A2-D82216F06C55}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32210.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpMocker", "src\HttpMocker\HttpMocker.csproj", "{3E58D226-DBDA-48B1-91A2-D82216F06C55}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{B8C5C291-4769-4DE1-8E11-3055D61F8424}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClients", "samples\HttpClients\HttpClients.csproj", "{AF1AF2D5-DAF6-49C8-8FEC-5AED31197EEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpClients", "samples\HttpClients\HttpClients.csproj", "{AF1AF2D5-DAF6-49C8-8FEC-5AED31197EEC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3844F5E1-2A81-4939-A4BF-07FCF58CDDFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "test\UnitTests\UnitTests.csproj", "{DEECF5E8-73B3-43FA-8770-7380809B582D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,8 +27,19 @@ Global
 		{AF1AF2D5-DAF6-49C8-8FEC-5AED31197EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF1AF2D5-DAF6-49C8-8FEC-5AED31197EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF1AF2D5-DAF6-49C8-8FEC-5AED31197EEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEECF5E8-73B3-43FA-8770-7380809B582D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEECF5E8-73B3-43FA-8770-7380809B582D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEECF5E8-73B3-43FA-8770-7380809B582D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEECF5E8-73B3-43FA-8770-7380809B582D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AF1AF2D5-DAF6-49C8-8FEC-5AED31197EEC} = {B8C5C291-4769-4DE1-8E11-3055D61F8424}
+		{DEECF5E8-73B3-43FA-8770-7380809B582D} = {3844F5E1-2A81-4939-A4BF-07FCF58CDDFB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6FD49D3B-8ABE-4619-A1D6-90945F786891}
 	EndGlobalSection
 EndGlobal
