@@ -1,4 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Threading.Tasks;
+using System.Net;
+using System.Net.Http;
 using HttpMocker;
 using Microsoft.Extensions.DependencyInjection;
 

@@ -3,11 +3,11 @@ using System.Collections.Immutable;
 
 namespace HttpMocker;
 
-internal class DelegatingHandlerMock : DelegatingHandler
+internal class HttpMockerDelegatingHandler : DelegatingHandler
 {
     private readonly ImmutableArray<IHttpClientMiddleware> _middlewares;
 
-    public DelegatingHandlerMock(IEnumerable<IHttpClientMiddleware> middlewares)
+    public HttpMockerDelegatingHandler(IEnumerable<IHttpClientMiddleware> middlewares)
     {
         _middlewares = middlewares.ToImmutableArray();
     }

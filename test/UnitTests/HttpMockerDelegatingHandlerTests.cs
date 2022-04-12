@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace UnitTests
 {
-    public class DelegatingHandlerMockTests
+    public class HttpMockerDelegatingHandlerTests
     {
         [Fact]
         public async Task ZeroMiddlewaresMockShouldThrowInvalidatOperation()
         {
-            var mockHandler = new DelegatingHandlerMock(
+            var mockHandler = new HttpMockerDelegatingHandler(
                 Enumerable.Empty<IHttpClientMiddleware>());
 
             var client = new HttpClient(mockHandler);
@@ -26,7 +26,7 @@ namespace UnitTests
         [Fact]
         public async Task NotHandledRequestShouldThrowInvalidatOperation()
         {
-            var mockHandler = new DelegatingHandlerMock(
+            var mockHandler = new HttpMockerDelegatingHandler(
                 new[] { new NoopHttpClientMiddleware() });
 
             var client = new HttpClient(mockHandler);
@@ -38,7 +38,7 @@ namespace UnitTests
         [Fact]
         public async Task FallbackMiddlewareShouldReturnPreparedResponse()
         {
-            var mockHandler = new DelegatingHandlerMock(
+            var mockHandler = new HttpMockerDelegatingHandler(
                 new[] { new FallbackMiddleware(() => new HttpResponseMessage(System.Net.HttpStatusCode.NotFound)) });
 
             var client = new HttpClient(mockHandler);
@@ -50,7 +50,7 @@ namespace UnitTests
         [Fact]
         public async Task RequestProcessingPipelineShouldContinueUntilFirstSuccessfullMiddleware()
         {
-            var mockHandler = new DelegatingHandlerMock(
+            var mockHandler = new HttpMockerDelegatingHandler(
                 new IHttpClientMiddleware[]
                 {
                     new NoopHttpClientMiddleware(),
@@ -67,7 +67,7 @@ namespace UnitTests
         public async Task RequestCapturingMiddlewareShouldCaptureProcessedRequests()
         {
             var capturingMiddleware = new RequestCapturingMiddleware();
-            var mockHandler = new DelegatingHandlerMock(
+            var mockHandler = new HttpMockerDelegatingHandler(
                 new IHttpClientMiddleware[]
                 {
                     capturingMiddleware,

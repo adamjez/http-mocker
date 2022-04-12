@@ -107,7 +107,7 @@ public static class HttpClientMockBuilderExtensions
             var actions = delegateOptions.HttpClientActionFactories
                 .Select(factory => factory(handlerBuilder.Services));
 
-            var delegatingHandler = new DelegatingHandlerMock(actions);
+            var delegatingHandler = new HttpMockerDelegatingHandler(actions);
             handlerBuilder.AdditionalHandlers.Add(delegatingHandler);
         });
     }
